@@ -4,16 +4,16 @@ import { EditExpensePage } from '../../components/EditExpensePage'
 import ExpenseForm from '../../components/ExpenseForm'
 import expenses from '../fixtures/expenses'
 
-let onSubmit
-let onClick
+let editExpense 
+let removeExpense
 let history
 let wrapper
 
 beforeEach(() => {
-  onSubmit = jest.fn()
-  onClick = jest.fn()
+  editExpense = jest.fn()
+  removeExpense = jest.fn()
   history = { push: jest.fn() }
-  wrapper = shallow(<EditExpensePage onSubmit={onSubmit} onClick={onClick} history={history} />)
+  wrapper = shallow(<EditExpensePage editExpense={editExpense} removeExpense={removeExpense} history={history} />)
 })
 
 test('should render EditExpensePage correctly', () => {
@@ -23,11 +23,11 @@ test('should render EditExpensePage correctly', () => {
 test('should handle onSubmit', () => {
   wrapper.find(ExpenseForm).prop('onSubmit')(expenses[0])
   expect(history.push).toHaveBeenCalledWith('/')
-  expect(onSubmit).toHaveBeenCalledWith(expenses[0])
+  expect(editExpense).toHaveBeenCalledWith(expenses[0])
 })
 
 test('should handle onClick', () => {
   wrapper.find('button').prop('onClick')(expenses[0])
   expect(history.push).toHaveBeenCalledWith('/')
-  expect(onClick).toHaveBeenCalled()
+  expect(removeExpense).toHaveBeenCalled()
 })
