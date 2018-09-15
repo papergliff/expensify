@@ -2,3 +2,7 @@ node_modules/
 playground/
 public/bundle.js
 .vscode/
+public/bundle.js.map
+public/styles.css
+public/styles.css.map
+public/styles.css
